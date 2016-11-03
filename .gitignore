@@ -1,0 +1,5 @@
+.idea/
+react-router/
+redux/
+**/examples/
+**/node_modules/
