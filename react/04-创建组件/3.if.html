@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+
+  class HelloMessage extends React.Component {
+    render() {
+      if (this.props.name === 'you') {
+        return (
+          <h1>Hello, 就是你</h1>
+        )
+      }
+      return (
+        <h1>Hello, {this.props.name}</h1>
+      )
+    }
+  }
+
+  ReactDOM.render(
+    <div>
+      <HelloMessage name="you"/>
+      <HelloMessage name="me"/>
+      <HelloMessage name="others"/>
+    </div>,
+    document.getElementById('example')
+  )
+
+</script>
+</body>
+</html>

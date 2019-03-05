@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+
+  class Student extends React.Component {
+    state = {
+      students: [
+        {name: 'Lucy', age: 21},
+        {name: 'Tom', age: 25}
+      ]
+    }
+
+    add = student => {
+      const students = [...this.state.students, student]
+      this.setState({students})
+    }
+
+    remove = i => {
+      const students = this.state.students.filter((it, index) => index !== i)
+      this.setState({students})
+    }
+
+    render() {
+      return (
+        <div>
+          <StudentList students={this.state.students} remove={this.remove}/>
+          <StudentForm add={this.add}/>
+        </div>
+      )
+    }
+  }
+
+  // 渲染列表，删除学生
+  const StudentList = props => {
+    return <div>
+      {
+        props.students.map((it, i) => {
+          return (
+            <div key={i}>
+              <p>姓名{it.name} - 年龄 {it.age}
+                <button onClick={() => props.remove(i)}>删除</button>
+              </p>
+            </div>
+          )
+        })
+      }
+    </div>
+  }
+
+  // 添加新的学生
+  class StudentForm extends React.Component {
+    state = {name: null, age: null}
+
+    handleChange = e => {
+      this.setState({[e.target.id]: e.target.value})
+    }
+
+    handleSubmit = e => {
+      e.preventDefault()
+      console.log('form submitted', this.state)
+      this.props.add(this.state)
+    }
+
+    render() {
+      return (
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <label htmlFor="name">姓名</label>
+            <input id="name" type="text" onChange={this.handleChange}/>
+            <label htmlFor="age">年龄</label>
+            <input id="age" type="text" onChange={this.handleChange}/>
+            <button>提交</button>
+          </form>
+        </div>
+      )
+    }
+  }
+
+  ReactDOM.render(<Student/>, document.getElementById('example'))
+</script>
+</body>
+</html>

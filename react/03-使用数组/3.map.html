@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+  const names = ['Alice', 'Emily', 'Kate']
+  ReactDOM.render(
+    <div>
+      {
+        names.map(function (name) {
+          return <div>Hello, {name}!</div>
+        })
+      }
+    </div>,
+    document.getElementById('example')
+  )
+</script>
+</body>
+</html>

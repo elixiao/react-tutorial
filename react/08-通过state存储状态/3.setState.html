@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+  // 下面是点赞的场景，在 state 里面存 liked 表示是否喜欢；还有购物车的场景，在 state 里面存 items 表示所选的商品
+  class LikeButton extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {liked: false}
+    }
+
+    handleClick(event) {
+      this.setState({liked: !this.state.liked})
+    }
+
+    render() {
+      const text = this.state.liked ? 'like' : 'haven\'t liked'
+      return (
+        <p onClick={() => this.handleClick()}>
+          You {text} this. Click to toggle.
+        </p>
+      )
+    }
+  }
+
+  ReactDOM.render(
+    <LikeButton/>,
+    document.getElementById('example')
+  )
+</script>
+</body>
+</html>
+

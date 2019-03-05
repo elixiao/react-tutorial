@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+
+  // 如何处理嵌套标签的方式，this.props.children可以获取子节点。
+  class NotesList extends React.Component {
+    render () {
+      // 判断3种类型，通过 React.Children 可以更好的处理3种取值的情况
+      const children = this.props.children
+      console.log(children)
+      return (
+        <ol>
+          {
+            React.Children.map(this.props.children, function (child) {
+              return <li>{child}</li>
+            })
+          }
+        </ol>
+      )
+    }
+  }
+
+  ReactDOM.render(
+    <NotesList>
+      one
+      <span>two</span>
+      <div>three</div>
+    </NotesList>,
+    document.getElementById('example')
+  )
+
+</script>
+</body>
+</html>
+

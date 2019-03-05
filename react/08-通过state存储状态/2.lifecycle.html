@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+  class LikeButton extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {liked: false}
+    }
+
+    static defaultProps = {}
+
+    componentWillMount() {
+      alert('componentWillMount')
+    }
+
+    render() {
+      alert('render')
+      const text = this.state.liked ? 'like' : 'haven\'t liked'
+      return (
+        <p onClick={() => this.handleClick()}>
+          You {text} this. Click to toggle.
+        </p>
+      )
+    }
+
+    componentDidMount() {
+      alert('componentDidMount')
+    }
+
+    handleClick(event) {
+      this.setState({liked: !this.state.liked})
+    }
+  }
+
+  ReactDOM.render(
+    <LikeButton/>,
+    document.getElementById('example')
+  )
+</script>
+</body>
+</html>
+

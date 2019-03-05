@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+  class Form extends React.Component {
+    state = {name: null, age: null}
+
+    handleChange = e => {
+      this.setState({[e.target.id]: e.target.value})
+    }
+
+    handleSubmit = e => {
+      e.preventDefault()
+      console.log('form submitted', this.state)
+    }
+
+    render() {
+      return (
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <label htmlFor="name">姓名</label>
+            <input id="name" type="text" onChange={this.handleChange}/>
+            <label htmlFor="age">年龄</label>
+            <input id="age" type="text" onChange={this.handleChange}/>
+            <button>提交</button>
+          </form>
+        </div>
+      )
+    }
+  }
+
+  ReactDOM.render(<Form/>, document.getElementById('example'))
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+  class Student extends React.Component {
+    state = {
+      name: 'David',
+      age: 12
+    }
+
+    render() {
+      return (
+        <div>
+          <p>姓名：{this.state.name}</p>
+          <p>年龄：{this.state.age}</p>
+        </div>
+      )
+    }
+  }
+
+  ReactDOM.render(
+    <Student/>,
+    document.getElementById('example')
+  )
+</script>
+</body>
+</html>
+
