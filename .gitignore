@@ -3,3 +3,4 @@ react-router/
 redux/
 **/examples/
 node_modules/
+hidden/
